@@ -1,5 +1,5 @@
-require "coffeekupper/version"
+require "coffeekupper/template"
+require "coffeekupper/engine" if defined?(::Rails)
 
 module Coffeekupper
-  # Your code goes here...
 end
