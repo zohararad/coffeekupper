@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["zohar@zohararad.com"]
   gem.description   = %q{CoffeeKup compiler for Asset Pipeline}
   gem.summary       = %q{Write client side templates in Rails using CoffeeKup}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/zohararad/coffeekupper"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
