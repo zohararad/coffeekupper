@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'v8'
-require 'execjs'
 
 describe Coffeekupper::Template do
   def template ck, file
@@ -22,22 +21,24 @@ describe Coffeekupper::Template do
 
     subject { render(ck_template, ck_file) }
 
-    it { should include "function(locals){" }
+    it { should include "CoffeeKup.compile(tmpl)" }
   end
 
   describe 'executing' do
+    let(:str) {'Hello World' }
+
     subject do
       vendor_dir = File.expand_path('../../vendor/assets/javascripts',__FILE__)
-      func = render "p -> 'Hello World'", 'hello.js.coffeekup'
+      func = render "p -> @str", 'hello.js.coffeekup'
       V8::C::Locker() do
-        context = V8::Context.new
+        context = V8::Context.new(:with => Window.new)
         context.eval(File.read(File.join(vendor_dir,'coffee-script.js')))
         context.eval(File.read(File.join(vendor_dir,'coffeekup.js')))
-        context.eval("var CoffeeKup = coffeekup;\n var f = #{func};\n f()")
+        context.eval("var CoffeeKup = coffeekup;\n var f = #{func};\n f({str:'#{str}'})")
       end
     end
 
-    it { should include 'Hello World' }
+    it { should include str }
   end
 
   describe 'serving' do
