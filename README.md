@@ -50,8 +50,8 @@ Sweet, right?
 To actually use the template in your app, add the following lines to your `application.js` (or any other Javascript file that has been added to the Asset Pipeline):
 
 ```
-//= require coffee-script
-//= require coffeekup
+//= require coffee-script # browser version of CoffeeScript (available from CoffeeKupper vendor/assets)
+//= require coffeekup # browser version of CoffeeKup (available from CoffeeKupper vendor/assets)
 //= require_tree ./views
 ```
 
