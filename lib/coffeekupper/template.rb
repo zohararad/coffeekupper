@@ -10,7 +10,7 @@ module Coffeekupper
     end
 
     def evaluate(scope, locals, &block)
-      %(function(locals){ var tmpl = #{template_as_string(data)}; return CoffeeKup.render(tmpl,{"locals":locals})})
+      %(function(locals){ var tmpl = #{template_as_string(data)}; return CoffeeKup.render.call(locals,tmpl,{"locals":locals})})
     end
 
     private
